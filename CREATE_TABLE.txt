@@ -1,0 +1,67 @@
+
+DELETE FROM activity_checkin; 	ALTER TABLE activity_checkin AUTO_INCREMENT = 1;
+DELETE FROM activity_post; 		ALTER TABLE activity_post AUTO_INCREMENT = 1;
+
+
+DROP TABLE IF EXISTS `activity_checkin`;
+DROP TABLE IF EXISTS `activity_post`;
+
+CREATE TABLE `activity_checkin` (
+  `shadow_id` bigint(14) unsigned NOT NULL AUTO_INCREMENT,
+  `delete_key` tinyint(1) default NULL,
+  `id` char(13) NOT NULL,
+  `user_id` char(16) NOT NULL,
+  `company` varchar(32) NOT NULL,
+  `theater` varchar(32) NOT NULL,
+  `room` varchar(16) NOT NULL,
+  `sr_movie_id` varchar(16) NOT NULL,
+  `regist` int(11) NOT NULL,
+  `imported` int(11) NOT NULL,
+
+  PRIMARY KEY  (`shadow_id`),
+  UNIQUE KEY `idx_activity_checkin_key` (`id`),
+  KEY `idx_activity_checkin_search` (`user_id`,`company`,`regist`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `activity_post` (
+  `shadow_id` bigint(14) unsigned NOT NULL AUTO_INCREMENT,
+  `delete_key` tinyint(1) default NULL,
+  `id` char(13) NOT NULL,
+  `user_id` char(16) NOT NULL,
+  `company` varchar(32) NOT NULL,
+  `theater` varchar(32) NOT NULL,
+  `room` varchar(16) NOT NULL,
+  `sr_movie_id` varchar(16) NOT NULL,
+  `title` varchar(128) NOT NULL,
+  `question` varchar(128) NOT NULL,
+  `comment` varchar(256) NOT NULL,
+  `link` varchar(256) NOT NULL,
+  `service` varchar(64) NOT NULL,
+  `primary_service` varchar(16) NOT NULL,
+
+  `facebook_user_id` varchar(32) default NULL,
+  `facebook_name` varchar(64) default NULL,
+  `facebook_img` varchar(128) default NULL,
+  `facebook_friends` int(10) default 0,
+  `facebook_post_id` varchar(64) default NULL,
+  `facebook_error` varchar(128) default NULL,
+
+  `twitter_user_id` varchar(32) default NULL,
+  `twitter_name` varchar(64) default NULL,
+  `twitter_img` varchar(128) default NULL,
+  `twitter_friends` int(10) default 0,
+  `twitter_post_id` varchar(64) default NULL,
+  `twitter_error` varchar(128) default NULL,
+
+  `mail_mail` varchar(32) default NULL,
+  `mail_name` varchar(64) default NULL,
+  `mail_img` varchar(128) default NULL,
+
+  `regist` int(11) NOT NULL,
+  `imported` int(11) NOT NULL,
+
+  PRIMARY KEY  (`shadow_id`),
+  UNIQUE KEY `idx_activity_post_key` (`id`),
+  KEY `idx_activity_post_search` (`user_id`,`company`,`regist`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
