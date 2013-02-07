@@ -1,3 +1,5 @@
+test
+
 
 DELETE FROM activity_checkin; 	ALTER TABLE activity_checkin AUTO_INCREMENT = 1;
 DELETE FROM activity_post; 		ALTER TABLE activity_post AUTO_INCREMENT = 1;
